@@ -1,27 +1,26 @@
-package junit.src.main.java.junit;
-import java.util.Vector;
-import java.util.Stack;
 
-public class Pila implements Calculator, Stack{
+import java.util.Vector;
+
+public class Pila implements Calculator, Stack<Double>{
     // atributos o propiedades
-    Vector vector = new Vector(10,5); //vector inicial de 10 posicion y aumenta en 5
+    Vector<Double> vector = new Vector<Double>(10,5); //vector inicial de 10 posicion y aumenta en 5
     double resultado=0; //resultado esperado para el usuario
-    Stack <Vector> mysStack = new Stack<>();
+    
 
     @Override
-    public void add(Object item) {
+    public void add(Double item) {
         // TODO Auto-generated method stub
-        
+        vector.add(item);
     }
 
     @Override
-    public Object remove() {
+    public Double remove() {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Object peek() {
+    public Double peek() {
         // TODO Auto-generated method stub
         return null;
     }
