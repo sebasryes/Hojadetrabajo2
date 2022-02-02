@@ -64,14 +64,14 @@ public class MyFrame extends JFrame implements ActionListener {
         chooseButton.addActionListener(this);
         bg.add(chooseButton);
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == chooseButton) {
             JFileChooser txtchooser = new JFileChooser();
             int response = txtchooser.showOpenDialog(null);
             if (response == JFileChooser.APPROVE_OPTION) {
-				File file = new File(txtchooser.getSelectedFile().getAbsolutePath());
+                File file = new File(txtchooser.getSelectedFile().getAbsolutePath());
                 try {
                     BufferedReader reader = new BufferedReader(new FileReader(file));
                     String input = reader.readLine(); // aqui esta el String que va dentro de calculate
@@ -79,10 +79,11 @@ public class MyFrame extends JFrame implements ActionListener {
                 } catch (IOException err) {
                     err.printStackTrace();
                 }
-			}
+		    }
 
         }
         
     }
-
+	
 }
+
