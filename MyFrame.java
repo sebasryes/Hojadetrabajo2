@@ -3,10 +3,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.GroupLayout.Alignment;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -21,9 +17,8 @@ import java.io.IOException;
 public class MyFrame extends JFrame implements ActionListener {
 
     private JPanel bg;
-    private JLabel result, tittle;
+    private JLabel label, tittle, resultado;
     private JButton chooseButton;
-
 
     public MyFrame() {
         this.setSize(400, 300);
@@ -46,16 +41,21 @@ public class MyFrame extends JFrame implements ActionListener {
     }
 
     private void iniciateText() {
-        result = new JLabel("Su resultado es: ");
-        result.setBounds(20, 100, 150, 20);
-        result.setAlignmentX(CENTER_ALIGNMENT);
-        bg.add(result);
+        label = new JLabel("Su resultado es: ");
+        label.setBounds(20, 100, 100, 20);
+        label.setAlignmentX(CENTER_ALIGNMENT);
+        bg.add(label);
 
         tittle = new JLabel("Calculadora Grupo 2");
         tittle.setBounds(20, 20, 250, 50);
         tittle.setFont(new Font("Arial", 2, 20));
         tittle.setAlignmentX(CENTER_ALIGNMENT);
         bg.add(tittle);
+
+        resultado = new JLabel("(Seleccione un archivo)");
+        resultado.setBounds(120, 100, 150, 20);
+        resultado.setAlignmentX(LEFT_ALIGNMENT);
+        bg.add(resultado);
     }
 
     private void putButtons() {
@@ -69,18 +69,13 @@ public class MyFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == chooseButton) {
             JFileChooser txtchooser = new JFileChooser();
-            txtchooser.showOpenDialog(null);
             int response = txtchooser.showOpenDialog(null);
-
             if (response == JFileChooser.APPROVE_OPTION) {
 				File file = new File(txtchooser.getSelectedFile().getAbsolutePath());
                 try {
                     BufferedReader reader = new BufferedReader(new FileReader(file));
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        System.out.println(reader.readLine());
-                    }
-                    reader.close();
+                    String input = reader.readLine(); // aqui esta el String que va dentro de calculate
+                    reader.close(); 
                 } catch (IOException err) {
                     err.printStackTrace();
                 }
