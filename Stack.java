@@ -3,6 +3,9 @@
 /**
  * Defines all the methods that a Stack should have.
  * @param <E> Type of the items stored on the Stack. Example: String
+ * @author Pedro Marroquín 21801, Sebastian Reyes 21139 & Roberto Ríos 20979
+ * @version 1.0
+ * @since 30/01/2022
  */
 public interface Stack<E> {
     /**
