@@ -117,7 +117,11 @@ public class Pila implements Calculator, Stack<Double>{
                 resultante = a*b;
                 break;
             case "/":
-                resultante = a/b;
+                if(b!=0){//lidiar con divisiones por 0
+                    resultante = a/b;
+                }else{
+                    resultante = 0.0;
+                }
                 break;
             default:
                 System.out.println("Ocurrió un error y no se realizó la operación");

@@ -50,7 +50,7 @@ public class MyFrame extends JFrame implements ActionListener {
     }
 
     private void iniciateText() {
-        label = new JLabel("Su resultado es: ");
+        label = new JLabel("Resultado: ");
         label.setBounds(20, 100, 100, 20);
         label.setAlignmentX(CENTER_ALIGNMENT);
         bg.add(label);
@@ -100,14 +100,9 @@ public class MyFrame extends JFrame implements ActionListener {
                         for(int i = 0; i<Operaciones.size(); i++)
                         {
                             // aqui se coloca actualiza el label para dar el resultado que devuelve calculate
-                            result.setText(String.valueOf(pila.calculate(Operaciones.get(i))));
                             System.out.println("El resultado de la linea "+(i+1)+" es: "+pila.calculate(Operaciones.get(i)));
-                            try {
-                              Thread.sleep(3000);//muestra el resultado por 5 segundos
-                            } catch (InterruptedException er) {
-                              er.printStackTrace();
-                            }
                         }
+                        result.setText("Resultados en terminal");
                     }catch(Exception error)
                     {
                         error.printStackTrace();
