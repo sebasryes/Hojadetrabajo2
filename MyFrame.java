@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 /**
  * Esta clase se realizó para interactuar con el usuario
- * IMPORTANTE, para probar clases de otros grupos, dirigirse a la línea 98
+ * IMPORTANTE, para probar clases de otros grupos, dirigirse a la línea 30
  * @author Pedro Marroquín 21801, Sebastian Reyes 21139 & Roberto Ríos 20979
  * @version 1.0
  * @since 30/01/2022
@@ -25,8 +25,9 @@ import java.util.ArrayList;
 public class MyFrame extends JFrame implements ActionListener {
     
     private JPanel bg;
-    private JLabel label, tittle, resultado;
+    private JLabel label, tittle, result;
     private JButton chooseButton;
+    private Pila pila;
 
     public MyFrame() {
         this.setSize(400, 300);
@@ -60,10 +61,10 @@ public class MyFrame extends JFrame implements ActionListener {
         tittle.setAlignmentX(CENTER_ALIGNMENT);
         bg.add(tittle);
 
-        resultado = new JLabel("(Seleccione un archivo)");
-        resultado.setBounds(120, 100, 150, 20);
-        resultado.setAlignmentX(LEFT_ALIGNMENT);
-        bg.add(resultado);
+        result = new JLabel("(Seleccione un archivo)");
+        result.setBounds(120, 100, 150, 20);
+        result.setAlignmentX(LEFT_ALIGNMENT);
+        bg.add(result);
     }
 
     private void putButtons() {
@@ -72,14 +73,14 @@ public class MyFrame extends JFrame implements ActionListener {
         chooseButton.addActionListener(this);
         bg.add(chooseButton);
     }
-
-    @Override
+    
+   @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == chooseButton) {
             JFileChooser txtchooser = new JFileChooser();
             int response = txtchooser.showOpenDialog(null);
             if (response == JFileChooser.APPROVE_OPTION) {
-				File file = new File(txtchooser.getSelectedFile().getAbsolutePath());
+                File file = new File(txtchooser.getSelectedFile().getAbsolutePath());
                 try {
                     BufferedReader reader = new BufferedReader(new FileReader(file));
                     ArrayList<String> Operaciones = new ArrayList<String>();
@@ -95,11 +96,17 @@ public class MyFrame extends JFrame implements ActionListener {
                         }
                     }while(existe_siguiente);
                     //se realiza la operación de todos los Strings dentro del ArrayList creado
-                    Pila pila = new Pila();
                     try{
                         for(int i = 0; i<Operaciones.size(); i++)
                         {
+                            // aqui se coloca actualiza el label para dar el resultado que devuelve calculate
+                            result.setText(String.valueOf(pila.calculate(input)));
                             System.out.println("El resultado de la linea "+(i+1)+"es: "+pila.calculate(Operaciones.get(i)));
+                            try {
+                              Thread.sleep(3000);//muestra el resultado por 5 segundos
+                            } catch (InterruptedException e) {
+                              e.printStackTrace();
+                            }
                         }
                     }catch(Exception error)
                     {
@@ -109,10 +116,11 @@ public class MyFrame extends JFrame implements ActionListener {
                 } catch (IOException err) {
                     err.printStackTrace();
                 }
-			}
+	     }
 
         }
         
     }
-
+	
 }
+

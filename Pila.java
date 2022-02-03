@@ -9,10 +9,14 @@ import java.util.Vector;
  */
 public class Pila implements Calculator, Stack<Double>{
     // atributos o propiedades
-    Vector<Double> vector = new Vector<Double>(10,5); //vector inicial de 10 posicion y aumenta en 5
-    double resultado = 0; //resultado esperado para el usuario
+    Vector<Double> vector; //vector inicial de 10 posicion y aumenta en 5
+    double resultado; //resultado esperado para el usuario
     
-    /**
+    public Pila() {
+        this.vector = new Vector<Double>(10,5);
+        this.resultado = 0;
+    }
+     /**
      * agrega el item proporcionado dentro del Vector
      */
     @Override
@@ -120,4 +124,5 @@ public class Pila implements Calculator, Stack<Double>{
         }
         add(resultante); // agrega el resultado al stack de Vector
     }
+
 }
