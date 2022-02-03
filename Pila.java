@@ -29,7 +29,7 @@ public class Pila implements Calculator, Stack<Double>{
      */
     @Override
     public Double remove() {
-        Double numero_retornado = vector.remove(size());
+        Double numero_retornado = vector.remove(size()-1);
         return numero_retornado;
     }
     /**
@@ -37,7 +37,7 @@ public class Pila implements Calculator, Stack<Double>{
      */
     @Override
     public Double peek() {
-        return vector.get(size());
+        return vector.get(size()-1);
     }
     /**
      * Verifica si está vacío o no el Vector de almacenaje
