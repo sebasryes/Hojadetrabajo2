@@ -14,8 +14,16 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException; 
 
+import java.util.ArrayList;
+/**
+ * Esta clase se realizó para interactuar con el usuario
+ * IMPORTANTE, para probar clases de otros grupos, dirigirse a la línea 30
+ * @author Pedro Marroquín 21801, Sebastian Reyes 21139 & Roberto Ríos 20979
+ * @version 1.0
+ * @since 30/01/2022
+ */
 public class MyFrame extends JFrame implements ActionListener {
-
+    
     private JPanel bg;
     private JLabel label, tittle, result;
     private JButton chooseButton;
@@ -75,10 +83,36 @@ public class MyFrame extends JFrame implements ActionListener {
                 File file = new File(txtchooser.getSelectedFile().getAbsolutePath());
                 try {
                     BufferedReader reader = new BufferedReader(new FileReader(file));
-                    String input = reader.readLine(); // aqui esta el String que va dentro de calculate
-                    // aqui se coloca actualiza el label para dar el resultado que devuelve calculate
-                    result.setText(String.valueOf(pila.calculate(input))); // implementar pila.calculate!!!
-                    reader.close(); // si algo esta fallando pueden probar cambiar de lugar las lineas 80 y 81
+                    ArrayList<String> Operaciones = new ArrayList<String>();
+                    boolean existe_siguiente = true;
+                    //lee cada línea del documento, los guarda en un ArrayList de Strings
+                    do{
+                        String input = reader.readLine();
+                        if(input == null)
+                        {
+                            existe_siguiente = false;
+                        }else{
+                            Operaciones.add(input);
+                        }
+                    }while(existe_siguiente);
+                    //se realiza la operación de todos los Strings dentro del ArrayList creado
+                    try{
+                        for(int i = 0; i<Operaciones.size(); i++)
+                        {
+                            // aqui se coloca actualiza el label para dar el resultado que devuelve calculate
+                            result.setText(String.valueOf(pila.calculate(input)));
+                            System.out.println("El resultado de la linea "+(i+1)+"es: "+pila.calculate(Operaciones.get(i)));
+                            try {
+                              Thread.sleep(3000);//muestra el resultado por 5 segundos
+                            } catch (InterruptedException e) {
+                              e.printStackTrace();
+                            }
+                        }
+                    }catch(Exception error)
+                    {
+                        error.printStackTrace();
+                    }
+                    reader.close(); 
                 } catch (IOException err) {
                     err.printStackTrace();
                 }
