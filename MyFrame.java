@@ -27,7 +27,7 @@ public class MyFrame extends JFrame implements ActionListener {
     private JPanel bg;
     private JLabel label, tittle, result;
     private JButton chooseButton;
-    private Pila pila;
+    private Pila pila = new Pila();
 
     public MyFrame() {
         this.setSize(400, 300);
